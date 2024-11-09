@@ -2,7 +2,7 @@
 using VRCFaceTracking;
 using VRCFaceTracking.Core.Params.Expressions;
 using NetMQ;
-
+using NetMQ.Sockets;
 using System.Runtime.InteropServices;
 using Microsoft.Win32;
 

@@ -15,7 +15,7 @@ namespace MediaPipeWebcam
     //private readonly Thread _receiverThread;
     private bool _running;
     private bool _disposed;
-        private SubscriberSocket _subSocket;
+    private SubscriberSocket _subSocket;
 
     public SubSocketManager(string socketAddress, int maxQueueLength)
     {
@@ -37,7 +37,7 @@ namespace MediaPipeWebcam
     {
 
 
-            while (_running)
+            if (_running)
             {
                 try
                 {

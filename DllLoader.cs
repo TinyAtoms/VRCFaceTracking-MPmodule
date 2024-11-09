@@ -20,8 +20,8 @@ namespace MediaPipeWebcam
                 if (module != IntPtr.Zero)
                     ReleaseRuntime();
 
-            //module = LoadLibrary("NetMQ.dll");
-            module = LoadLibrary("D:\\Desktop\\VRtrackingmodeule\\MediaPipeWebcam\\dependencies\\NetMQ.dll");
+            module = LoadLibrary("NetMQ.dll");
+            //module = LoadLibrary("D:\\Desktop\\VRtrackingmodeule\\MediaPipeWebcam\\dependencies\\NetMQ.dll");
             Console.WriteLine("loaded library");
         }
 
@@ -32,8 +32,9 @@ namespace MediaPipeWebcam
                 module = IntPtr.Zero;
             }
 
-            [DllImport("D:\\Desktop\\VRtrackingmodeule\\MediaPipeWebcam\\dependencies\\NetMQ.dll", CallingConvention = CallingConvention.Cdecl)]
-            internal static extern int Initial(int anipalType, IntPtr config);
+        //[DllImport("D:\\Desktop\\VRtrackingmodeule\\MediaPipeWebcam\\dependencies\\NetMQ.dll", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport("NetMQ.dll", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern int Initial(int anipalType, IntPtr config);
     }
 }
 

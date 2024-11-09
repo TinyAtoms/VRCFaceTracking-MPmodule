@@ -14,11 +14,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="dependencies\" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Reference Include="NetMQ">
-      <HintPath>deps\NetMQ.dll</HintPath>
+      <HintPath>dependencies\NetMQ.dll</HintPath>
     </Reference>
     <Reference Include="VRCFaceTracking.Core">
-      <HintPath>deps\VRCFaceTracking-5.2.3.0\VRCFaceTracking.Core\bin\x64\Release\net7.0\VRCFaceTracking.Core.dll</HintPath>
+      <HintPath>dependencies\VRCFaceTracking.Core.dll</HintPath>
     </Reference>
   </ItemGroup>
 
