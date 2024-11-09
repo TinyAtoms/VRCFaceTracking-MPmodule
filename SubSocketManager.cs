@@ -1,6 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading;
+﻿//using System;
+//using System.Collections.Generic;
+//using System.Threading;
 using NetMQ;
 using NetMQ.Sockets;
 
@@ -12,35 +12,36 @@ namespace MediaPipeWebcam
     private readonly int _maxQueueLength;
     private readonly Queue<Dictionary<string, object>> _messageQueue;
     private readonly object _queueLock = new object();
-    private readonly Thread _receiverThread;
+    //private readonly Thread _receiverThread;
     private bool _running;
     private bool _disposed;
+        private SubscriberSocket _subSocket;
 
     public SubSocketManager(string socketAddress, int maxQueueLength)
     {
         _socketAddress = socketAddress;
         _maxQueueLength = maxQueueLength;
         _messageQueue = new Queue<Dictionary<string, object>>();
-        _receiverThread = new Thread(ReceiveMessages)
-        {
-            IsBackground = true
-        };
+        //_receiverThread = new Thread(ReceiveMessages)
+        //{
+        //    IsBackground = true
+        //};
         _running = true;
-        _receiverThread.Start();
+            //_receiverThread.Start();
+            _subSocket = new SubscriberSocket();
+            _subSocket.Connect(_socketAddress);
+            _subSocket.Subscribe(""); // Subscribe to all messages
     }
 
-    private void ReceiveMessages()
+    private Dictionary<string, object> ReceiveMessages()
     {
-        using (var subSocket = new SubscriberSocket())
-        {
-            subSocket.Connect(_socketAddress);
-            subSocket.Subscribe(""); // Subscribe to all messages
+
 
             while (_running)
             {
                 try
                 {
-                    string message = subSocket.ReceiveFrameString();
+                    string message = _subSocket.ReceiveFrameString();
                     var jsonDictionary = Newtonsoft.Json.JsonConvert.DeserializeObject<Dictionary<string, object>>(message);
                     EnqueueMessage(ConvertValuesToNumbers(jsonDictionary));
                     //Console.WriteLine("recieved message");
@@ -51,7 +52,8 @@ namespace MediaPipeWebcam
                     Console.WriteLine($"Error receiving message: {ex.Message}");
                 }
             }
-        }
+            return GetOldestData();
+        
     }
 
     private Dictionary<string, object> ConvertValuesToNumbers(Dictionary<string, object> original)
@@ -118,7 +120,7 @@ namespace MediaPipeWebcam
     public void Stop()
     {
         _running = false;
-        _receiverThread.Join();
+        //_receiverThread.Join();
     }
 
     public void Dispose()

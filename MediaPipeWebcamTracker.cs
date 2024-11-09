@@ -1,14 +1,23 @@
-﻿using System.Security.Cryptography.X509Certificates;
+﻿
 using VRCFaceTracking;
-using VRCFaceTracking.Core.Library;
 using VRCFaceTracking.Core.Params.Expressions;
+using NetMQ;
+
+using System.Runtime.InteropServices;
+using Microsoft.Win32;
+
 
 namespace MediaPipeWebcam
 {
     public class MediaPipeWebcamTracker : ExtTrackingModule
-
-
     {
+
+
+        // Kernel32 SetDllDirectory
+        [DllImport("kernel32.dll", CharSet = CharSet.Unicode)]
+        private static extern bool SetDllDirectory(string lpPathName);
+        
+
         private Dictionary<int, (string, float)> UEtranslation =
        new Dictionary<int, (string, float)>
        {
@@ -64,13 +73,22 @@ namespace MediaPipeWebcam
          };
 
 
-        public SubSocketManager _subSocketManager  = new SubSocketManager("tcp://localhost:5555", 60);
+        public SubSocketManager _subSocketManager;
         // interface can send eye and expression data
         public override (bool SupportsEye, bool SupportsExpression) Supported => (true, true);
 
         public override (bool eyeSuccess, bool expressionSuccess) Initialize(bool eyeAvailable, bool expressionAvailable)
         {
+            Console.WriteLine("came to this init");
+
+            //var currentDllDirectory = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+            SetDllDirectory("D:\\Desktop\\VRtrackingmodeule\\MediaPipeWebcam\\dependencies");
+            Console.WriteLine("set the dll dir");
+            DllLoader.InitialRuntime();
+
+
             var state = (eyeAvailable, expressionAvailable);
+            _subSocketManager = new SubSocketManager("tcp://localhost:5555", 60);
 
             ModuleInformation.Name = "Mediapipe Webcam Module";
 
@@ -100,7 +118,7 @@ namespace MediaPipeWebcam
 
                 if (trackingData != null)
                 {
-                    //Console.WriteLine("got values!!");
+                    Console.WriteLine("got values!!");
                     foreach (var parameter in UEtranslation)
                     {
                         int p = parameter.Key;

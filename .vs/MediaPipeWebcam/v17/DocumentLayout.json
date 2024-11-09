@@ -3,12 +3,19 @@
   "WorkspaceRootPath": "D:\\Desktop\\VRtrackingmodeule\\MediaPipeWebcam\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{4BB5C3E9-53F2-4D04-8A76-460941E409C5}|MediaPipeWebcam.csproj|d:\\desktop\\vrtrackingmodeule\\mediapipewebcam\\subsocketmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4BB5C3E9-53F2-4D04-8A76-460941E409C5}|MediaPipeWebcam.csproj|solutionrelative:subsocketmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{4BB5C3E9-53F2-4D04-8A76-460941E409C5}|MediaPipeWebcam.csproj|d:\\desktop\\vrtrackingmodeule\\mediapipewebcam\\mediapipewebcamtracker.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4BB5C3E9-53F2-4D04-8A76-460941E409C5}|MediaPipeWebcam.csproj|solutionrelative:mediapipewebcamtracker.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4BB5C3E9-53F2-4D04-8A76-460941E409C5}|MediaPipeWebcam.csproj|d:\\desktop\\vrtrackingmodeule\\mediapipewebcam\\subsocketmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4BB5C3E9-53F2-4D04-8A76-460941E409C5}|MediaPipeWebcam.csproj|solutionrelative:subsocketmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{4BB5C3E9-53F2-4D04-8A76-460941E409C5}|MediaPipeWebcam.csproj|d:\\desktop\\vrtrackingmodeule\\mediapipewebcam\\dllloader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4BB5C3E9-53F2-4D04-8A76-460941E409C5}|MediaPipeWebcam.csproj|solutionrelative:dllloader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\s.ramsaransing\\AppData\\Local\\Temp\\tmpD510.dgml||{295A0962-5A59-4F4F-9E12-6BC670C15C3B}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,7 +25,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -26,28 +33,52 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "SubSocketManager.cs",
-              "DocumentMoniker": "D:\\Desktop\\VRtrackingmodeule\\MediaPipeWebcam\\SubSocketManager.cs",
-              "RelativeDocumentMoniker": "SubSocketManager.cs",
-              "ToolTip": "D:\\Desktop\\VRtrackingmodeule\\MediaPipeWebcam\\SubSocketManager.cs",
-              "RelativeToolTip": "SubSocketManager.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "DllLoader.cs",
+              "DocumentMoniker": "D:\\Desktop\\VRtrackingmodeule\\MediaPipeWebcam\\DllLoader.cs",
+              "RelativeDocumentMoniker": "DllLoader.cs",
+              "ToolTip": "D:\\Desktop\\VRtrackingmodeule\\MediaPipeWebcam\\DllLoader.cs",
+              "RelativeToolTip": "DllLoader.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-08T03:58:02.812Z"
+              "WhenOpened": "2024-11-09T16:36:45.03Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "MediaPipeWebcamTracker.cs",
               "DocumentMoniker": "D:\\Desktop\\VRtrackingmodeule\\MediaPipeWebcam\\MediaPipeWebcamTracker.cs",
               "RelativeDocumentMoniker": "MediaPipeWebcamTracker.cs",
               "ToolTip": "D:\\Desktop\\VRtrackingmodeule\\MediaPipeWebcam\\MediaPipeWebcamTracker.cs",
               "RelativeToolTip": "MediaPipeWebcamTracker.cs",
-              "ViewState": "AgIAAFEAAAAAAAAAAAAowEEAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAFoAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-07T16:40:59.836Z",
+              "WhenOpened": "2024-11-09T16:04:45.097Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "SubSocketManager.cs",
+              "DocumentMoniker": "D:\\Desktop\\VRtrackingmodeule\\MediaPipeWebcam\\SubSocketManager.cs",
+              "RelativeDocumentMoniker": "SubSocketManager.cs",
+              "ToolTip": "D:\\Desktop\\VRtrackingmodeule\\MediaPipeWebcam\\SubSocketManager.cs",
+              "RelativeToolTip": "SubSocketManager.cs",
+              "ViewState": "AgIAAG8AAAAAAAAAAADwv4kAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-09T16:03:59.182Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "tmpD510.dgml [Viewer]",
+              "DocumentMoniker": "C:\\Users\\s.ramsaransing\\AppData\\Local\\Temp\\tmpD510.dgml",
+              "ToolTip": "C:\\Users\\s.ramsaransing\\AppData\\Local\\Temp\\tmpD510.dgml [Viewer]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000968|",
+              "WhenOpened": "2024-11-09T15:59:30.296Z",
+              "EditorCaption": " [Viewer]"
             }
           ]
         }
