@@ -1,0 +1,16 @@
+C:\Users\s.ramsaransing\source\repos\MediaPipeWebcam\bin\x64\Release\net7.0\MediaPipeWebcam.deps.json
+C:\Users\s.ramsaransing\source\repos\MediaPipeWebcam\bin\x64\Release\net7.0\MediaPipeWebcam.dll
+C:\Users\s.ramsaransing\source\repos\MediaPipeWebcam\bin\x64\Release\net7.0\MediaPipeWebcam.pdb
+C:\Users\s.ramsaransing\source\repos\MediaPipeWebcam\bin\x64\Release\net7.0\VRCFaceTracking.Core.dll
+C:\Users\s.ramsaransing\source\repos\MediaPipeWebcam\bin\x64\Release\net7.0\VRCFaceTracking.Core.pdb
+C:\Users\s.ramsaransing\source\repos\MediaPipeWebcam\bin\x64\Release\net7.0\VRCFaceTracking.Core.dll.config
+C:\Users\s.ramsaransing\source\repos\MediaPipeWebcam\obj\x64\Release\net7.0\MediaPipeWebcam.csproj.AssemblyReference.cache
+C:\Users\s.ramsaransing\source\repos\MediaPipeWebcam\obj\x64\Release\net7.0\MediaPipeWebcam.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\s.ramsaransing\source\repos\MediaPipeWebcam\obj\x64\Release\net7.0\MediaPipeWebcam.AssemblyInfoInputs.cache
+C:\Users\s.ramsaransing\source\repos\MediaPipeWebcam\obj\x64\Release\net7.0\MediaPipeWebcam.AssemblyInfo.cs
+C:\Users\s.ramsaransing\source\repos\MediaPipeWebcam\obj\x64\Release\net7.0\MediaPipeWebcam.csproj.CoreCompileInputs.cache
+C:\Users\s.ramsaransing\source\repos\MediaPipeWebcam\obj\x64\Release\net7.0\MediaPip.C455EF79.Up2Date
+C:\Users\s.ramsaransing\source\repos\MediaPipeWebcam\obj\x64\Release\net7.0\MediaPipeWebcam.dll
+C:\Users\s.ramsaransing\source\repos\MediaPipeWebcam\obj\x64\Release\net7.0\refint\MediaPipeWebcam.dll
+C:\Users\s.ramsaransing\source\repos\MediaPipeWebcam\obj\x64\Release\net7.0\MediaPipeWebcam.pdb
+C:\Users\s.ramsaransing\source\repos\MediaPipeWebcam\obj\x64\Release\net7.0\ref\MediaPipeWebcam.dll
