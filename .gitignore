@@ -1,0 +1,67 @@
+# Build results
+[Dd]ebug/
+[Rr]elease/
+[Bb]in/
+[Oo]bj/
+
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.ide
+*.sln.docstates
+
+# Visual Studio Code files
+.vscode/
+
+# Visual Studio 2019 and later settings
+.vs/
+*.sln
+*.sln.cache
+*.sln.docstates
+
+# Rider settings
+.idea/
+
+# Visual Studio 2022 settings
+.vs/
+
+# Temporary files
+*.log
+*.tmp
+
+# NuGet Packages
+*.nupkg
+**/packages/*
+
+# Cache files
+.cache/
+*.cache
+
+# Coverage results
+*.coverage
+*.coveragexml
+
+# Output folders
+out/
+publish/
+publish/*/
+
+# Resharper
+*.DotSettings.user
+_ReSharper*/
+resharper*/
+*.DotSettings
+
+# Other files that may appear in development
+*.pdb
+*.mdb
+*.nuspec
+
+# Backup files
+*~
+*.bak
+*.swp
+
+# DotNet tools
+.tool/
