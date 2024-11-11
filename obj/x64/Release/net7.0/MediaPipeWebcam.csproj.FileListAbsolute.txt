@@ -1,0 +1,17 @@
+D:\Desktop\VRtrackingmodeule\MediaPipeWebcam\obj\x64\Release\net7.0\MediaPipeWebcam.csproj.AssemblyReference.cache
+D:\Desktop\VRtrackingmodeule\MediaPipeWebcam\obj\x64\Release\net7.0\MediaPipeWebcam.GeneratedMSBuildEditorConfig.editorconfig
+D:\Desktop\VRtrackingmodeule\MediaPipeWebcam\obj\x64\Release\net7.0\MediaPipeWebcam.AssemblyInfoInputs.cache
+D:\Desktop\VRtrackingmodeule\MediaPipeWebcam\obj\x64\Release\net7.0\MediaPipeWebcam.AssemblyInfo.cs
+D:\Desktop\VRtrackingmodeule\MediaPipeWebcam\obj\x64\Release\net7.0\MediaPipeWebcam.csproj.CoreCompileInputs.cache
+D:\Desktop\VRtrackingmodeule\MediaPipeWebcam\obj\x64\Release\net7.0\MediaPipeWebcam.sourcelink.json
+D:\Desktop\VRtrackingmodeule\MediaPipeWebcam\bin\x64\Release\net7.0\MediaPipeWebcam.deps.json
+D:\Desktop\VRtrackingmodeule\MediaPipeWebcam\bin\x64\Release\net7.0\MediaPipeWebcam.dll
+D:\Desktop\VRtrackingmodeule\MediaPipeWebcam\bin\x64\Release\net7.0\MediaPipeWebcam.pdb
+D:\Desktop\VRtrackingmodeule\MediaPipeWebcam\bin\x64\Release\net7.0\VRCFaceTracking.Core.dll
+D:\Desktop\VRtrackingmodeule\MediaPipeWebcam\bin\x64\Release\net7.0\VRCFaceTracking.Core.pdb
+D:\Desktop\VRtrackingmodeule\MediaPipeWebcam\bin\x64\Release\net7.0\VRCFaceTracking.Core.dll.config
+D:\Desktop\VRtrackingmodeule\MediaPipeWebcam\obj\x64\Release\net7.0\MediaPip.C455EF79.Up2Date
+D:\Desktop\VRtrackingmodeule\MediaPipeWebcam\obj\x64\Release\net7.0\MediaPipeWebcam.dll
+D:\Desktop\VRtrackingmodeule\MediaPipeWebcam\obj\x64\Release\net7.0\refint\MediaPipeWebcam.dll
+D:\Desktop\VRtrackingmodeule\MediaPipeWebcam\obj\x64\Release\net7.0\MediaPipeWebcam.pdb
+D:\Desktop\VRtrackingmodeule\MediaPipeWebcam\obj\x64\Release\net7.0\ref\MediaPipeWebcam.dll

@@ -1,10 +1,6 @@
 ﻿
 using VRCFaceTracking;
 using VRCFaceTracking.Core.Params.Expressions;
-using NetMQ;
-using NetMQ.Sockets;
-using System.Runtime.InteropServices;
-using Microsoft.Win32;
 
 
 namespace MediaPipeWebcam
@@ -13,10 +9,6 @@ namespace MediaPipeWebcam
     {
 
 
-        // Kernel32 SetDllDirectory
-        [DllImport("kernel32.dll", CharSet = CharSet.Unicode)]
-        private static extern bool SetDllDirectory(string lpPathName);
-        
 
         private Dictionary<int, (string, float)> UEtranslation =
        new Dictionary<int, (string, float)>
@@ -60,6 +52,7 @@ namespace MediaPipeWebcam
            { (int)UnifiedExpressions.LipPuckerLowerRight, ("LipPucker", 0) },
            { (int)UnifiedExpressions.LipPuckerUpperLeft, ("LipPucker", 0) },
            { (int)UnifiedExpressions.LipPuckerUpperRight, ("LipPucker", 0) },
+           
 
        };
 
@@ -72,23 +65,17 @@ namespace MediaPipeWebcam
            { (int)UnifiedSimpleExpressions.MouthSmileRight, ("MouthSmileRight", 0) },
          };
 
+        private TcpMessageReceiver _reciever;
 
-        public SubSocketManager _subSocketManager;
+
         // interface can send eye and expression data
         public override (bool SupportsEye, bool SupportsExpression) Supported => (true, true);
 
         public override (bool eyeSuccess, bool expressionSuccess) Initialize(bool eyeAvailable, bool expressionAvailable)
         {
-            Console.WriteLine("came to this init");
-
-            //var currentDllDirectory = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
-            SetDllDirectory("D:\\Desktop\\VRtrackingmodeule\\MediaPipeWebcam\\dependencies");
-            Console.WriteLine("set the dll dir");
-            DllLoader.InitialRuntime();
 
 
             var state = (eyeAvailable, expressionAvailable);
-            _subSocketManager = new SubSocketManager("tcp://localhost:5555", 60);
 
             ModuleInformation.Name = "Mediapipe Webcam Module";
 
@@ -101,6 +88,7 @@ namespace MediaPipeWebcam
             //// Setting the stream to be referenced by VRCFaceTracking.
             //ModuleInformation.StaticImages =
             //    stream != null ? new List<Stream> { stream } : ModuleInformation.StaticImages;
+            _reciever = new TcpMessageReceiver(5555);
             return state;
         }
 
@@ -108,23 +96,15 @@ namespace MediaPipeWebcam
         // VRCFaceTracking will run this function in a separate thread;
         public override void Update()
         {
-            // Get latest tracking data from interface and transform to VRCFaceTracking data.
-
-            //if (Status == ModuleState.Active) // Module Status validation
-            {
-                // ... Execute update cycle.
-                var trackingData = _subSocketManager.GetOldestData();
-
-
+                var trackingData = _reciever.GetOldestMessage();
                 if (trackingData != null)
                 {
-                    Console.WriteLine("got values!!");
                     foreach (var parameter in UEtranslation)
                     {
                         int p = parameter.Key;
                         string mpkey = parameter.Value.Item1;
                         float defaultVal = parameter.Value.Item2;
-                        if (trackingData[mpkey] is not null)
+                        if (trackingData[mpkey] is not 0)
                         {
                             UnifiedTracking.Data.Shapes[p].Weight = (float)trackingData[mpkey];
                         }
@@ -132,24 +112,25 @@ namespace MediaPipeWebcam
                         {
                             UnifiedTracking.Data.Shapes[p].Weight = (float) defaultVal;
                         }
-                       
+                    UnifiedTracking.Data.Eye.Left.Openness = (float)0.5;
+                    UnifiedTracking.Data.Eye.Right.Openness = (float)0.5;
+
+
 
                     }
+                //Console.WriteLine("tracking data updated");
+                //Console.WriteLine("JawOpen: " + trackingData["JawOpen"]);
 
-                    
-
-                }
-                else
-                {
-                }
-                Thread.Sleep(1000 / 30);
-
-
-                //UnifiedTracking.Data.Eye.Left.Openness = 1;
-                //UnifiedTracking.Data.Shapes[(int)UnifiedExpressions.JawOpen] = ExampleTracker.Mouth.JawOpen;
+                Thread.Sleep(1000 / 100);
             }
+            else
+            {
+                Thread.Sleep(10);
 
-            // Add a delay or halt for the next update cycle for performance. eg: 
+            }
+            
+                
+
         }
 
         // Called when the module is unloaded or VRCFaceTracking itself tears down.

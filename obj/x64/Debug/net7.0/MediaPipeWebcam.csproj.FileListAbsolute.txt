@@ -1,9 +1,7 @@
 D:\Desktop\VRtrackingmodeule\MediaPipeWebcam\bin\x64\Debug\net7.0\MediaPipeWebcam.deps.json
 D:\Desktop\VRtrackingmodeule\MediaPipeWebcam\bin\x64\Debug\net7.0\MediaPipeWebcam.dll
 D:\Desktop\VRtrackingmodeule\MediaPipeWebcam\bin\x64\Debug\net7.0\MediaPipeWebcam.pdb
-D:\Desktop\VRtrackingmodeule\MediaPipeWebcam\bin\x64\Debug\net7.0\NetMQ.dll
 D:\Desktop\VRtrackingmodeule\MediaPipeWebcam\bin\x64\Debug\net7.0\VRCFaceTracking.Core.dll
-D:\Desktop\VRtrackingmodeule\MediaPipeWebcam\bin\x64\Debug\net7.0\AsyncIO.dll
 D:\Desktop\VRtrackingmodeule\MediaPipeWebcam\bin\x64\Debug\net7.0\VRCFaceTracking.Core.pdb
 D:\Desktop\VRtrackingmodeule\MediaPipeWebcam\bin\x64\Debug\net7.0\VRCFaceTracking.Core.dll.config
 D:\Desktop\VRtrackingmodeule\MediaPipeWebcam\obj\x64\Debug\net7.0\MediaPipeWebcam.csproj.AssemblyReference.cache

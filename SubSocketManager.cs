@@ -31,7 +31,7 @@ namespace MediaPipeWebcam
             _subSocket = new SubscriberSocket();
             _subSocket.Connect(_socketAddress);
             _subSocket.Subscribe(""); // Subscribe to all messages
-    }
+        }
 
     private Dictionary<string, object> ReceiveMessages()
     {
