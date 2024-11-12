@@ -38,8 +38,7 @@
               "ViewState": "AgIAABcAAAAAAAAAAAAQwE8AAAA7AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-10T02:40:09.412Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Bookmark",
@@ -55,8 +54,7 @@
               "RelativeToolTip": "SubSocketManager.cs",
               "ViewState": "AgIAACIAAAAAAAAAAAAgwCwAAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-10T03:27:09.661Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-10T03:27:09.661Z"
             },
             {
               "$type": "Document",
@@ -68,8 +66,7 @@
               "RelativeToolTip": "..\\trackertester\\Program.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-10T02:52:43.588Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-10T02:52:43.588Z"
             },
             {
               "$type": "Document",
@@ -79,7 +76,7 @@
               "RelativeDocumentMoniker": "MediaPipeWebcamTracker.cs",
               "ToolTip": "D:\\Desktop\\VRtrackingmodeule\\MediaPipeWebcam\\MediaPipeWebcamTracker.cs",
               "RelativeToolTip": "MediaPipeWebcamTracker.cs",
-              "ViewState": "AgIAAFQAAAAAAAAAAAAowFsAAAAZAAAAAAAAAA==",
+              "ViewState": "AgIAAGYAAAAAAAAAAAAwwIEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-09T16:04:45.097Z",
               "EditorCaption": ""

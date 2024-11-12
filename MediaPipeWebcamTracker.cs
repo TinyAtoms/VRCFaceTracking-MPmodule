@@ -19,12 +19,14 @@ namespace MediaPipeWebcam
            { (int)UnifiedExpressions.BrowOuterUpRight, ("BrowOuterUpRight", 0) },
            { (int)UnifiedExpressions.CheekPuffLeft, ("CheekPuff", 0) },
            { (int)UnifiedExpressions.CheekPuffRight, ("CheekPuff", 0) },
+
            { (int)UnifiedExpressions.CheekSquintLeft, ("CheekSquintLeft", 0) },
            { (int)UnifiedExpressions.CheekSquintRight, ("CheekSquintRight", 0) },
            { (int)UnifiedExpressions.EyeSquintLeft, ("EyeSquintLeft", 0) },
            { (int)UnifiedExpressions.EyeSquintRight, ("EyeSquintRight", 0) },
            { (int)UnifiedExpressions.EyeWideLeft, ("EyeWideLeft", 0) },
            { (int)UnifiedExpressions.EyeWideRight, ("EyeWideRight", 0) },
+
            { (int)UnifiedExpressions.JawForward, ("JawForward", 0) },
            { (int)UnifiedExpressions.JawLeft, ("JawLeft", 0) },
            { (int)UnifiedExpressions.JawOpen, ("JawOpen", 0) },
@@ -115,7 +117,31 @@ namespace MediaPipeWebcam
                     UnifiedTracking.Data.Eye.Left.Openness = (float)0.5;
                     UnifiedTracking.Data.Eye.Right.Openness = (float)0.5;
 
+                    //true, false
+                    bool leftEyeUp = (trackingData["EyeLookUpLeft"] > trackingData["EyeLookDownLeft"]);
+                    float lefty = (leftEyeUp) ?  trackingData["EyeLookUpLeft"] : -1 * trackingData["EyeLookDownLeft"];
+                    bool rightEyeUp = (trackingData["EyeLookUpRight"] > trackingData["EyeLookDownRight"]);
+                    float righty = (rightEyeUp) ?  trackingData["EyeLookUpRight"] :-1 * trackingData["EyeLookDownRight"];
+                    bool leftEyeOut = (trackingData["EyeLookInLeft"] < trackingData["EyeLookOutLeft"]);
+                    float leftx = (leftEyeOut) ? trackingData["EyeLookOutLeft"] * -1  : trackingData["EyeLookInLeft"];
+                    bool rightEyeIn = (trackingData["EyeLookInRight"] > trackingData["EyeLookOutRight"]);
+                    float rightx = (rightEyeIn) ? trackingData["EyeLookInRight"] * -1 :  trackingData["EyeLookOutRight"];
 
+
+                    //bool leftEyeOut = (trackingData["EyeLookInLeft"] < trackingData["EyeLookOutLeft"]);
+                    //float leftx = (leftEyeOut) ? trackingData["EyeLookInLeft"] * -1 : trackingData["EyeLookOutLeft"];
+                    //bool rightEyeIn = (trackingData["EyeLookInRight"] > trackingData["EyeLookOutRight"]);
+                    //float rightx = (rightEyeIn) ? trackingData["EyeLookInRight"] * -1 : trackingData["EyeLookOutRight"]
+                    //;
+                    //UnifiedTracking.Data.Eye.Left.Gaze = new VRCFaceTracking.Core.Types.Vector2(leftx, lefty);
+                    //UnifiedTracking.Data.Eye.Right.Gaze = new VRCFaceTracking.Core.Types.Vector2(rightx, righty);
+
+                    var avgx = (leftx + rightx) / 2;
+                    var avgy = (lefty + righty) / 2;
+                    UnifiedTracking.Data.Eye.Left.Gaze = new VRCFaceTracking.Core.Types.Vector2(avgx, avgy);
+                    UnifiedTracking.Data.Eye.Right.Gaze = new VRCFaceTracking.Core.Types.Vector2(avgx, avgy);
+
+                    
 
                     }
                 //Console.WriteLine("tracking data updated");
