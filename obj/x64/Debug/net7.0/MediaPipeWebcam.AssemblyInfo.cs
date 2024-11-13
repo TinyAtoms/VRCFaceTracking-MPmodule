@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MediaPipeWebcam")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1d4500b43f50f01190e7ffa8970aa104c8630382")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+929b2fcf620fecddfc67485ac9f00543465649f0")]
 [assembly: System.Reflection.AssemblyProductAttribute("MediaPipeWebcam")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MediaPipeWebcam")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

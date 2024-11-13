@@ -1,12 +1,15 @@
 ﻿
 using VRCFaceTracking;
 using VRCFaceTracking.Core.Params.Expressions;
+using VRCFaceTracking.Core.Params.Data;
 
 
-namespace MediaPipeWebcam
+namespace MediaPipeWebcamModule
 {
     public class MediaPipeWebcamTracker : ExtTrackingModule
     {
+
+
 
 
 
@@ -70,27 +73,19 @@ namespace MediaPipeWebcam
         private TcpMessageReceiver _reciever;
 
 
-        // interface can send eye and expression data
         public override (bool SupportsEye, bool SupportsExpression) Supported => (true, true);
 
         public override (bool eyeSuccess, bool expressionSuccess) Initialize(bool eyeAvailable, bool expressionAvailable)
         {
-
-
             var state = (eyeAvailable, expressionAvailable);
-
             ModuleInformation.Name = "Mediapipe Webcam Module";
-
-            ////// Example of an embedded image stream being referenced as a stream
-            //var stream =
-            //    GetType()
-            //    .Assembly
-            //    .GetManifestResourceStream("MediaPipeWebcam.logo.png");
-
-            //// Setting the stream to be referenced by VRCFaceTracking.
-            //ModuleInformation.StaticImages =
-            //    stream != null ? new List<Stream> { stream } : ModuleInformation.StaticImages;
+            var stream =GetType().Assembly.GetManifestResourceStream("assets\\logo.png");
+            ModuleInformation.StaticImages = stream != null ? new List<Stream> { stream } : ModuleInformation.StaticImages;
             _reciever = new TcpMessageReceiver(5555);
+
+            //UnifiedTracking.Mutator.Enabled = true;
+            //UnifiedTracking.Mutator.SmoothingMode = true;
+            //UnifiedTracking.Mutator.SetSmoothness(0.1f);
             return state;
         }
 
@@ -114,8 +109,7 @@ namespace MediaPipeWebcam
                         {
                             UnifiedTracking.Data.Shapes[p].Weight = (float) defaultVal;
                         }
-                    //UnifiedTracking.Data.Eye.Left.Openness = (float)0.5;
-                    //UnifiedTracking.Data.Eye.Right.Openness = (float)0.5;
+                    
                     UnifiedTracking.Data.Eye.Left.Openness = (float)trackingData["EyeOpennessLeft"];
                     UnifiedTracking.Data.Eye.Right.Openness = (float)trackingData["EyeOpennessRight"];
 
@@ -133,6 +127,11 @@ namespace MediaPipeWebcam
                     UnifiedTracking.Data.Eye.Left.Gaze = new VRCFaceTracking.Core.Types.Vector2(avgx, avgy);
                     UnifiedTracking.Data.Eye.Right.Gaze = new VRCFaceTracking.Core.Types.Vector2(avgx, avgy);
 
+
+                    //UnifiedTracking.Mutator.MutateData(UnifiedTracking.Data);
+                    //UnifiedTracking.UpdateData();
+
+
                     // if you don't want to simplify it
                     //bool leftEyeOut = (trackingData["EyeLookInLeft"] < trackingData["EyeLookOutLeft"]);
                     //float leftx = (leftEyeOut) ? trackingData["EyeLookInLeft"] * -1 : trackingData["EyeLookOutLeft"];
@@ -145,8 +144,6 @@ namespace MediaPipeWebcam
 
 
                 }
-                //Console.WriteLine("tracking data updated");
-                //Console.WriteLine("JawOpen: " + trackingData["JawOpen"]);
 
                 Thread.Sleep(1000 / 100);
             }
@@ -163,7 +160,7 @@ namespace MediaPipeWebcam
         // Called when the module is unloaded or VRCFaceTracking itself tears down.
         public override void Teardown()
         {
-            //... Deinitialize tracking interface; dispose any data created with the module.
+            _reciever.Stop();
         }
 
     }
