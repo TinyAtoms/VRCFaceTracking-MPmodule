@@ -83,9 +83,6 @@ namespace MediaPipeWebcamModule
             ModuleInformation.StaticImages = stream != null ? new List<Stream> { stream } : ModuleInformation.StaticImages;
             _reciever = new TcpMessageReceiver(5555);
 
-            //UnifiedTracking.Mutator.Enabled = true;
-            //UnifiedTracking.Mutator.SmoothingMode = true;
-            //UnifiedTracking.Mutator.SetSmoothness(0.1f);
             return state;
         }
 
@@ -126,21 +123,6 @@ namespace MediaPipeWebcamModule
                     var avgy = (lefty + righty) / 2;
                     UnifiedTracking.Data.Eye.Left.Gaze = new VRCFaceTracking.Core.Types.Vector2(avgx, avgy);
                     UnifiedTracking.Data.Eye.Right.Gaze = new VRCFaceTracking.Core.Types.Vector2(avgx, avgy);
-
-
-                    //UnifiedTracking.Mutator.MutateData(UnifiedTracking.Data);
-                    //UnifiedTracking.UpdateData();
-
-
-                    // if you don't want to simplify it
-                    //bool leftEyeOut = (trackingData["EyeLookInLeft"] < trackingData["EyeLookOutLeft"]);
-                    //float leftx = (leftEyeOut) ? trackingData["EyeLookInLeft"] * -1 : trackingData["EyeLookOutLeft"];
-                    //bool rightEyeIn = (trackingData["EyeLookInRight"] > trackingData["EyeLookOutRight"]);
-                    //float rightx = (rightEyeIn) ? trackingData["EyeLookInRight"] * -1 : trackingData["EyeLookOutRight"]
-                    //;
-                    //UnifiedTracking.Data.Eye.Left.Gaze = new VRCFaceTracking.Core.Types.Vector2(leftx, lefty);
-                    //UnifiedTracking.Data.Eye.Right.Gaze = new VRCFaceTracking.Core.Types.Vector2(rightx, righty);
-
 
 
                 }

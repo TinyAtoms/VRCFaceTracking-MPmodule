@@ -37,9 +37,14 @@ namespace MediaPipeWebcamModule
         public void Stop()
         {
             _isListening = false;
-            _listenerThread.Join();
-            _currentClient?.Close();
             _listener.Stop();
+            _currentClient?.Close();
+            if (_listenerThread != null && _listenerThread.IsAlive)
+            {
+                _listenerThread.Join();
+            }
+           
+
         }
 
         public Dictionary<string, float> GetOldestMessage()
