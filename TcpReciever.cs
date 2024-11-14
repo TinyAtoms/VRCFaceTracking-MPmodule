@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Concurrent;
+﻿using System.Collections.Concurrent;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
@@ -13,37 +12,100 @@ namespace MediaPipeWebcamModule
     public class TcpMessageReceiver
     {
         private readonly TcpListener _listener;
-        private TcpClient _currentClient;
-        private bool _isListening;
         private readonly ConcurrentQueue<Dictionary<string, float>> _queue;
-        private const int QueueSize = 10;
-        private Thread _listenerThread;
+        private int _QueueSize;
+        private bool _keepThreadalive;
+        private bool _UnexpectedTermination;
+        
 
-        public TcpMessageReceiver(int port)
+
+        public TcpMessageReceiver(int port, int QueueSize = 10)
         {
             _listener = new TcpListener(IPAddress.Loopback, port);
             _queue = new ConcurrentQueue<Dictionary<string, float>>();
-            Start();
+            _QueueSize = QueueSize;
+            _keepThreadalive = true;
+            _UnexpectedTermination = false;
+            for (int i = 0; i < 5; i++)
+            {
+                Start();
+            }
+            
+            //Thread t = new Thread(ReconnectIfNeeded);
+            //t.Start();
+            //^ this looks very dumb and I should probably just spawn threads in Reconn if needed instead
+
         }
+
 
         public void Start()
         {
             _listener.Start();
-            _isListening = true;
-            _listenerThread = new Thread(ListenForMessages);
-            _listenerThread.Start();
+            Thread t = new Thread(ListenForMessages);
+            t.Start();
         }
+
+        //public void ReconnectIfNeeded()
+        //{
+        //    while (_keepThreadalive)
+        //    {
+        //        if (_UnexpectedTermination)
+        //        {
+        //            Start();
+        //        }
+        //    }
+
+        //}
 
         public void Stop()
         {
-            _isListening = false;
+            _keepThreadalive = false;
             _listener.Stop();
-            _currentClient?.Close();
-            if (_listenerThread != null && _listenerThread.IsAlive)
+
+        }
+
+        private void ListenForMessages()
+        {
+
+            
+            try
             {
-                _listenerThread.Join();
+                Socket socket = _listener.AcceptSocket();
+                Stream stream = new NetworkStream(socket);
+                StreamReader reader = new StreamReader(stream, Encoding.UTF8);
+                Console.WriteLine("stream and reader open");
+                while (_keepThreadalive && socket.Connected)
+                {
+                    var message = reader.ReadLine();
+                    Console.WriteLine("read message");
+                    if (!string.IsNullOrEmpty(message))
+                    {
+                        message = message.Substring(1, message.Length - 2);
+                        message = message.Replace(@"\", "");
+                        Dictionary<string, float> jsonDictionary = JsonConvert.DeserializeObject<Dictionary<string, float>>(message);
+                        _queue.Enqueue(jsonDictionary);
+                        if (_queue.Count > _QueueSize)
+                        {
+                            _queue.TryDequeue(out _);
+                        }
+
+                    }
+                }
+                reader.Close();
+                stream.Close();
+                socket.Close();
+
             }
-           
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error listening for messages: {ex.Message}");
+            }
+
+            if (_keepThreadalive)
+            {
+                _UnexpectedTermination = true;
+            }
+            
 
         }
 
@@ -61,39 +123,6 @@ namespace MediaPipeWebcamModule
             return _queue.Count;
         }
 
-        private void ListenForMessages()
-        {
-            while (_isListening)
-            {
-                try
-                {
-                    _currentClient = _listener.AcceptTcpClient();
-                    using (var stream = _currentClient.GetStream())
-                    using (var reader = new StreamReader(stream, Encoding.UTF8))
-                    {
-                        var message = reader.ReadLine();
-
-                   
-
-                        if (!string.IsNullOrEmpty(message))
-                        {
-                            message = message.Substring(1, message.Length - 2);
-                            message = message.Replace(@"\", "");
-                            Dictionary<string, float> jsonDictionary = JsonConvert.DeserializeObject<Dictionary<string, float>>(message);
-                            _queue.Enqueue(jsonDictionary);
-                            if (_queue.Count > QueueSize)
-                            {
-                                _queue.TryDequeue(out _);
-                            }
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"Error listening for messages: {ex.Message}");
-                }
-            }
-        }
     }
 
 }
