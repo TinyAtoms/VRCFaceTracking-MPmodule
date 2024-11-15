@@ -21,15 +21,16 @@ namespace MediaPipeWebcamModule
 
         public TcpMessageReceiver(int port, int QueueSize = 10)
         {
+            
             _listener = new TcpListener(IPAddress.Loopback, port);
             _queue = new ConcurrentQueue<Dictionary<string, float>>();
             _QueueSize = QueueSize;
             _keepThreadalive = true;
             _UnexpectedTermination = false;
-            for (int i = 0; i < 5; i++)
-            {
+            //for (int i = 0; i < 2; i++)
+            //{
                 Start();
-            }
+            //}
             
             //Thread t = new Thread(ReconnectIfNeeded);
             //t.Start();
@@ -67,14 +68,13 @@ namespace MediaPipeWebcamModule
         private void ListenForMessages()
         {
 
-            
             try
             {
                 Socket socket = _listener.AcceptSocket();
                 Stream stream = new NetworkStream(socket);
                 StreamReader reader = new StreamReader(stream, Encoding.UTF8);
                 Console.WriteLine("stream and reader open");
-                while (_keepThreadalive && socket.Connected)
+                while (_keepThreadalive)
                 {
                     var message = reader.ReadLine();
                     Console.WriteLine("read message");
@@ -88,12 +88,19 @@ namespace MediaPipeWebcamModule
                         {
                             _queue.TryDequeue(out _);
                         }
+                        Thread.Sleep(9);
 
+                    }
+                    else
+                    {
+                        Start();
+                        break;
                     }
                 }
                 reader.Close();
                 stream.Close();
                 socket.Close();
+                
 
             }
             catch (Exception ex)
