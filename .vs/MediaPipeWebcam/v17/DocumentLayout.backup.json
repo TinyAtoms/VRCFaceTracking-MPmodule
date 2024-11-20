@@ -28,11 +28,15 @@
               "RelativeDocumentMoniker": "TcpReciever.cs",
               "ToolTip": "D:\\Desktop\\VRtrackingmodeule\\MediaPipeWebcam\\TcpReciever.cs",
               "RelativeToolTip": "TcpReciever.cs",
-              "ViewState": "AgIAADcAAAAAAAAAAAAiwEcAAAANAAAAAAAAAA==",
+              "ViewState": "AgIAAEQAAAAAAAAAAAAkwEgAAAAlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-10T02:40:09.412Z",
               "IsPinned": true,
               "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
             },
             {
               "$type": "Document",
@@ -44,8 +48,7 @@
               "RelativeToolTip": "MediaPipeWebcamTracker.cs",
               "ViewState": "AgIAAEwAAAAAAAAAAAAgwFQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-09T16:04:45.097Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-09T16:04:45.097Z"
             }
           ]
         }

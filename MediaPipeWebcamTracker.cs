@@ -57,7 +57,7 @@ namespace MediaPipeWebcamModule
            { (int)UnifiedExpressions.LipPuckerLowerRight, ("LipPucker", 0) },
            { (int)UnifiedExpressions.LipPuckerUpperLeft, ("LipPucker", 0) },
            { (int)UnifiedExpressions.LipPuckerUpperRight, ("LipPucker", 0) },
-           
+
 
        };
 
@@ -79,7 +79,7 @@ namespace MediaPipeWebcamModule
         {
             var state = (eyeAvailable, expressionAvailable);
             ModuleInformation.Name = "Mediapipe Webcam Module";
-            var stream =GetType().Assembly.GetManifestResourceStream("assets\\logo.png");
+            var stream = GetType().Assembly.GetManifestResourceStream("assets\\logo.png");
             ModuleInformation.StaticImages = stream != null ? new List<Stream> { stream } : ModuleInformation.StaticImages;
             _reciever = new TcpMessageReceiver(5555);
 
@@ -91,35 +91,35 @@ namespace MediaPipeWebcamModule
         // VRCFaceTracking will run this function in a separate thread;
         public override void Update()
         {
-                var trackingData = _reciever.GetOldestMessage();
-                if (trackingData != null)
+            var trackingData = _reciever.GetOldestMessage();
+            if (trackingData != null)
+            {
+                foreach (var parameter in UEtranslation)
                 {
-                    foreach (var parameter in UEtranslation)
+                    int p = parameter.Key;
+                    string mpkey = parameter.Value.Item1;
+                    float defaultVal = parameter.Value.Item2;
+                    if (trackingData[mpkey] is not 0)
                     {
-                        int p = parameter.Key;
-                        string mpkey = parameter.Value.Item1;
-                        float defaultVal = parameter.Value.Item2;
-                        if (trackingData[mpkey] is not 0)
-                        {
-                            UnifiedTracking.Data.Shapes[p].Weight = (float)trackingData[mpkey];
-                        }
-                        else
-                        {
-                            UnifiedTracking.Data.Shapes[p].Weight = (float) defaultVal;
-                        }
-                    
+                        UnifiedTracking.Data.Shapes[p].Weight = (float)trackingData[mpkey];
+                    }
+                    else
+                    {
+                        UnifiedTracking.Data.Shapes[p].Weight = (float)defaultVal;
+                    }
+
                     UnifiedTracking.Data.Eye.Left.Openness = (float)trackingData["EyeOpennessLeft"];
                     UnifiedTracking.Data.Eye.Right.Openness = (float)trackingData["EyeOpennessRight"];
 
 
-                    bool leftEyeUp = (trackingData["EyeLookUpLeft"] > trackingData["EyeLookDownLeft"]);
-                    float lefty = (leftEyeUp) ? trackingData["EyeLookUpLeft"] : -1 * trackingData["EyeLookDownLeft"];
-                    bool rightEyeUp = (trackingData["EyeLookUpRight"] > trackingData["EyeLookDownRight"]);
-                    float righty = (rightEyeUp) ? trackingData["EyeLookUpRight"] : -1 * trackingData["EyeLookDownRight"];
-                    bool leftEyeOut = (trackingData["EyeLookInLeft"] < trackingData["EyeLookOutLeft"]);
-                    float leftx = (leftEyeOut) ? trackingData["EyeLookOutLeft"] * -1 : trackingData["EyeLookInLeft"];
-                    bool rightEyeIn = (trackingData["EyeLookInRight"] > trackingData["EyeLookOutRight"]);
-                    float rightx = (rightEyeIn) ? trackingData["EyeLookInRight"] * -1 : trackingData["EyeLookOutRight"];
+                    bool leftEyeUp = trackingData["EyeLookUpLeft"] > trackingData["EyeLookDownLeft"];
+                    float lefty = leftEyeUp ? trackingData["EyeLookUpLeft"] : -1 * trackingData["EyeLookDownLeft"];
+                    bool rightEyeUp = trackingData["EyeLookUpRight"] > trackingData["EyeLookDownRight"];
+                    float righty = rightEyeUp ? trackingData["EyeLookUpRight"] : -1 * trackingData["EyeLookDownRight"];
+                    bool leftEyeOut = trackingData["EyeLookInLeft"] < trackingData["EyeLookOutLeft"];
+                    float leftx = leftEyeOut ? trackingData["EyeLookOutLeft"] * -1 : trackingData["EyeLookInLeft"];
+                    bool rightEyeIn = trackingData["EyeLookInRight"] > trackingData["EyeLookOutRight"];
+                    float rightx = rightEyeIn ? trackingData["EyeLookInRight"] * -1 : trackingData["EyeLookOutRight"];
                     var avgx = (leftx + rightx) / 2;
                     var avgy = (lefty + righty) / 2;
                     UnifiedTracking.Data.Eye.Left.Gaze = new VRCFaceTracking.Core.Types.Vector2(avgx, avgy);
@@ -135,9 +135,6 @@ namespace MediaPipeWebcamModule
                 Thread.Sleep(10);
 
             }
-            
-                
-
         }
 
         // Called when the module is unloaded or VRCFaceTracking itself tears down.
